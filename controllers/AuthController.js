@@ -7,7 +7,6 @@ const utility = require("../helpers/utility");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mailer = require("../helpers/mailer");
-const { constants } = require("../helpers/constants");
 
 /**
  * User registration.
@@ -66,7 +65,7 @@ exports.register = [
 					let html = "<p>Please Confirm your Account.</p><p>OTP: "+otp+"</p>";
 					// Send confirmation email
 					mailer.send(
-						constants.confirmEmails.from, 
+						process.env.EMAIL_CONFIRM_FROM, 
 						req.body.email,
 						"Confirm Account",
 						html
@@ -237,7 +236,7 @@ exports.resendConfirmOtp = [
 							let html = "<p>Please Confirm your Account.</p><p>OTP: "+otp+"</p>";
 							// Send confirmation email
 							mailer.send(
-								constants.confirmEmails.from, 
+								process.env.EMAIL_CONFIRM_FROM, 
 								req.body.email,
 								"Confirm Account",
 								html
